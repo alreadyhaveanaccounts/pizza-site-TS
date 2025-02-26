@@ -1,7 +1,7 @@
 import React from "react";
 import cls from "./NotFoundBlock.module.scss";
 
-export default function NotFoundBlock() {
+const NotFoundBlock: React.FC = () => {
   return (
     <div className={cls.main}>
       <h1>Ничего не найдено</h1>
@@ -10,4 +10,5 @@ export default function NotFoundBlock() {
       </p>
     </div>
   );
-}
+};
+export default NotFoundBlock;

@@ -11,7 +11,7 @@ export const Sort = ({
   onClickChangeSort,
   onClickChangeSortDirection,
 }) => {
-  const sortRef = useRef();
+  const sortRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

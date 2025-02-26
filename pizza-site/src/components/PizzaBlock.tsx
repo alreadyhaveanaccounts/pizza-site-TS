@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setItems, setTotalPrice } from "../redux/slices/cartSlice";
 import { Link } from "react-router";
-import { useEffect } from "react";
 
-export const PizzaBlock = ({ title, price, sizes, types, id }) => {
+type PizzaBlockProps = {
+  title: string;
+  price: number;
+  sizes: number[];
+  types: number[];
+  id: string;
+};
+
+export const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  title,
+  price,
+  sizes,
+  types,
+  id,
+}) => {
   const [counter, setCounter] = useState(0);
   const [activeSize, setActiveSize] = useState(sizes[0]);
   const [activeType, setActiveType] = useState(types[0]);

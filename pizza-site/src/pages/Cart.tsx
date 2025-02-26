@@ -6,10 +6,13 @@ import PizzaCart from "../components/PizzaCart";
 import EmptyCart from "../components/EmptyCart";
 import { selectCart } from "../redux/slices/pizzaSlice";
 
-export default function Cart() {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(selectCart);
-  const totalAmount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalAmount = items.reduce(
+    (sum: number, item: any) => sum + item.count,
+    0
+  );
   return (
     <div>
       {" "}
@@ -125,9 +128,9 @@ export default function Cart() {
                     ></path>
                   </svg>
 
-                  <span Link to="/">
-                    Вернуться назад
-                  </span>
+                  <Link to="/">
+                    <span>Вернуться назад</span>
+                  </Link>
                 </Link>
                 <div className="button pay-btn">
                   <span>Оплатить сейчас</span>
@@ -141,4 +144,5 @@ export default function Cart() {
       )}{" "}
     </div>
   );
-}
+};
+export default Cart;

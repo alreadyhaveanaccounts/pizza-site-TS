@@ -1,20 +1,19 @@
-import React, { useCallback, useContext, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import cls from "./Search.module.scss";
 import debounce from "lodash.debounce";
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/slices/filterSlice";
 import { useSelector } from "react-redux";
-
-export default function Search() {
+import { RootState } from "../../redux/Store";
+const Search: React.FC = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const onClickClear = () => {
     dispatch(setSearchValue(""));
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
-  const { searchValue } = useSelector((state) => state.filter);
+  const { searchValue } = useSelector((state: RootState) => state.filter);
 
   const dispatch = useDispatch();
-
-  const inputRef = useRef();
 
   const debounsedSearch = useCallback(
     debounce((str) => {
@@ -47,4 +46,5 @@ export default function Search() {
       />
     </div>
   );
-}
+};
+export default Search;

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "target": "ESNext",
+    "allowJs": true,
+    "checkJs": false,
+    "noImplicitAny": false,
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  }
+}

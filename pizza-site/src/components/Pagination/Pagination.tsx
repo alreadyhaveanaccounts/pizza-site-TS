@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import cls from "./Pagination.module.scss";
-export default function Pagination({ onClickChangePagination }) {
+const Pagination: React.FC = ({ onClickChangePagination }: any) => {
   return (
     <>
       <ReactPaginate
@@ -18,4 +18,5 @@ export default function Pagination({ onClickChangePagination }) {
       />
     </>
   );
-}
+};
+export default Pagination;

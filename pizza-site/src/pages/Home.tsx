@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useEffect, useState, useRef } from "react";
+import React from "react";
+import { useEffect, useRef } from "react";
 import { Categories } from "../components/Categories";
 import { Sort } from "../components/Sort";
 import { PizzaBlock } from "../components/PizzaBlock";
@@ -8,6 +8,8 @@ import { sortedTypes } from "../components/Sort";
 import Pagination from "../components/Pagination/Pagination";
 // import { SearchContext } from "../App";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/Store";
+
 import {
   setCategoryId,
   setSortId,
@@ -19,17 +21,17 @@ import { fetchPizzas } from "../redux/slices/pizzaSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
 
-export default function Home() {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const { searchValue } = useSelector((state) => state.filter);
+  const { searchValue } = useSelector((state: RootState) => state.filter);
   const navigate = useNavigate();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
   //useSelector - это слушатель состояния, он следит за ним и перерисовывает компонент когда состояние изменяется
   const { categoryId, sortId, sortDirection, pageCurrent } = useSelector(
-    (state) => state.filter
+    (state: RootState) => state.filter
   );
-  const { pizzas, status } = useSelector((state) => state.pizza);
+  const { pizzas, status } = useSelector((state: RootState) => state.pizza);
   const search = searchValue ? searchValue : "";
 
   //этим хуком получаем данные из юрл и диспатчим в редакс, который меняет состояние через экшн setFilters, и при обновлении страницы у нас загружаются старые параметры сортировки/фильтрации и тд. При загрузке страницы Redux берет данные из URL (useEffect с qs.parse).При изменении фильтров Redux обновляет URL (useEffect с navigate).Таким образом, при обновлении страницы фильтры загружаются из URL, а после изменений записываются обратно.
@@ -70,9 +72,9 @@ export default function Home() {
     }
     isMounted.current = true;
   }, [categoryId, sortId, pageCurrent, sortDirection]);
-
   const fetchPizza = async () => {
     // Вариант для поиска пицц через Бек. Сразу в запрос на бек вставляем search который берем из управляемого инпута
+    // @ts-ignore
     dispatch(
       fetchPizzas({
         pageCurrent,
@@ -147,4 +149,5 @@ export default function Home() {
       />
     </div>
   );
-}
+};
+export default Home;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { plusPizza, minusPizza, deletePizza } from "../redux/slices/cartSlice";
 import { selectCart } from "../redux/slices/pizzaSlice";
 
-export default function PizzaCart() {
+const PizzaCart: React.FC = () => {
   const { items } = useSelector(selectCart);
   const dispatch = useDispatch();
   return (
@@ -107,4 +107,6 @@ export default function PizzaCart() {
       ))}
     </div>
   );
-}
+};
+
+export default PizzaCart;

@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-export default function FullPizza() {
+const FullPizza: React.FC = () => {
   const { id } = useParams();
-  const [pizza, setPizza] = useState("");
+  const [pizza, setPizza] = useState<{
+    title: string;
+    price: number;
+  }>();
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchPizza = async () => {
       try {
@@ -36,4 +39,6 @@ export default function FullPizza() {
       <p>{pizza.price}</p>
     </div>
   );
-}
+};
+
+export default FullPizza;
