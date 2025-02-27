@@ -1,22 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
-export const sortedTypes = [
+
+type SortedTypes = {
+  name: string;
+  sortBy: "rating" | "price" | "title";
+};
+export const sortedTypes: SortedTypes[] = [
   { name: "популярности", sortBy: "rating" },
   { name: "цене", sortBy: "price" },
   { name: "алфавиту", sortBy: "title" },
 ];
 
-export const Sort = ({
+type SortProps = {
+  sortId: number;
+  sortDirection: "asc" | "desc";
+  onClickChangeSort: (i: number) => void;
+  onClickChangeSortDirection: (direction: "asc" | "desc") => void;
+};
+export const Sort: React.FC<SortProps> = ({
   sortId,
   sortDirection,
   onClickChangeSort,
   onClickChangeSortDirection,
 }) => {
-  const sortRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const sortRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setVisible(false);
       }
     };

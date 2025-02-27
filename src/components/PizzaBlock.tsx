@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { setItems, setTotalPrice } from "../redux/slices/cartSlice";
 import { Link } from "react-router";
 
-type PizzaBlockProps = {
+export type PizzaBlockProps = {
   title: string;
   price: number;
   sizes: number[];
   types: number[];
   id: string;
+  count: number;
 };
 
 export const PizzaBlock: React.FC<PizzaBlockProps> = ({

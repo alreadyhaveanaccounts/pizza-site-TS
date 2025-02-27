@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PizzaBlockProps } from "../../components/PizzaBlock";
 
-const initialState = {
+interface IFInitialState {
+  totalPrice: number;
+  totalCount: number;
+  items: PizzaBlockProps[];
+}
+
+const initialState: IFInitialState = {
   items: [],
   totalPrice: 0,
+  totalCount: 0,
 };
 
 const cartSlice = createSlice({
@@ -42,16 +50,14 @@ const cartSlice = createSlice({
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
 
       if (findItem && findItem.count > 1) {
-        console.log(state.items);
         findItem.count--;
+        state.totalPrice -= findItem.price;
+        state.totalCount -= 1;
       } else {
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
       }
-      state.totalPrice -= findItem.price;
-      state.totalCount -= 1;
-      console.log(state.totalCount, state.items.length);
     },
   },
 });

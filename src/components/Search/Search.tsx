@@ -32,7 +32,7 @@ const Search: React.FC = () => {
       <input
         className={cls.input}
         placeholder="Начните вводить..."
-        onChange={(e) => debounsedSearch(e.target.value)}
+        onChange={(event) => debounsedSearch(event.target.value)}
         ref={inputRef}
       ></input>
 
