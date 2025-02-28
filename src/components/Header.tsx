@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import Search from "./Search/Search";
 import { useSelector } from "react-redux";
@@ -11,6 +11,17 @@ export const Header: React.FC = () => {
     0
   );
   const location = useLocation().pathname;
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json1 = JSON.stringify(items);
+      const json2 = JSON.stringify(totalPrice);
+      localStorage.setItem("cart", json1);
+      localStorage.setItem("price", json2);
+    }
+    isMounted.current = true;
+  }, [items]);
   return (
     <div className="header">
       <div className="container">

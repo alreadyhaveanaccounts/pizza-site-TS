@@ -1,4 +1,5 @@
 {
+  "exclude": ["vite.config.js", "eslint.config.js"],
   "compilerOptions": {
     "typeRoots": ["./types", "./node_modules/@types"],
     "target": "ESNext",

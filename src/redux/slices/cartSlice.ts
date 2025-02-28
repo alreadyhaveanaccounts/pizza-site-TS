@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PizzaBlockProps } from "../../components/PizzaBlock";
+import { getCartFromLS, getPricetFromLS } from "../../utils/getCartFromLS";
 
 interface IFInitialState {
   totalPrice: number;
@@ -8,8 +9,8 @@ interface IFInitialState {
 }
 
 const initialState: IFInitialState = {
-  items: [],
-  totalPrice: 0,
+  items: getCartFromLS(),
+  totalPrice: getPricetFromLS(),
   totalCount: 0,
 };
 
@@ -17,7 +18,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setItems(state, action) {
+    setItems(state, action: PayloadAction<PizzaBlockProps>) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
       if (findItem) {
         findItem.count++;
@@ -25,7 +26,7 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, count: 1 });
       }
     },
-    setTotalPrice(state, action) {
+    setTotalPrice(state, action: PayloadAction<number>) {
       state.totalPrice = state.totalPrice + action.payload;
     },
     clearItems(state) {
@@ -33,11 +34,11 @@ const cartSlice = createSlice({
       state.totalPrice = 0;
     },
 
-    deletePizza(state, action) {
+    deletePizza(state, action: PayloadAction<PizzaBlockProps>) {
       state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
 
-    plusPizza(state, action) {
+    plusPizza(state, action: PayloadAction<PizzaBlockProps>) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
       if (findItem) {
         findItem.count++;
@@ -46,7 +47,7 @@ const cartSlice = createSlice({
       state.totalCount += 1;
       console.log(state.totalCount, state.items.length);
     },
-    minusPizza(state, action) {
+    minusPizza(state, action: PayloadAction<PizzaBlockProps>) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
 
       if (findItem && findItem.count > 1) {

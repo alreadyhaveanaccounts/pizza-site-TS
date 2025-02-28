@@ -7,8 +7,8 @@ import Skeleton from "../components/Skeleton";
 import { sortedTypes } from "../components/Sort";
 import Pagination from "../components/Pagination/Pagination";
 // import { SearchContext } from "../App";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/Store";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../redux/Store";
 
 import {
   setCategoryId,
@@ -22,7 +22,7 @@ import qs from "qs";
 import { useNavigate } from "react-router";
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { searchValue } = useSelector((state: RootState) => state.filter);
   const navigate = useNavigate();
   const isSearch = useRef(false);
@@ -114,6 +114,7 @@ const Home: React.FC = () => {
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
   ));
+  console.log(categoryId);
 
   return (
     <div className="container">

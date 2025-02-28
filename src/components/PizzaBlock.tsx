@@ -10,6 +10,8 @@ export type PizzaBlockProps = {
   types: number[];
   id: string;
   count: number;
+  activeSize: number;
+  activeType: number;
 };
 
 export const PizzaBlock: React.FC<PizzaBlockProps> = ({
@@ -64,7 +66,18 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({
         <button
           onClick={() => {
             setCounter(counter + 1);
-            dispatch(setItems({ title, price, activeSize, activeType, id }));
+            dispatch(
+              setItems({
+                title,
+                price,
+                activeSize,
+                activeType,
+                id,
+                sizes,
+                types,
+                count: 1,
+              })
+            );
             dispatch(setTotalPrice(price));
           }}
           className="button button--outline button--add"

@@ -12,7 +12,7 @@ export const sortedTypes: SortedTypes[] = [
 
 type SortProps = {
   sortId: number;
-  sortDirection: "asc" | "desc";
+  sortDirection: string;
   onClickChangeSort: (i: number) => void;
   onClickChangeSortDirection: (direction: "asc" | "desc") => void;
 };
