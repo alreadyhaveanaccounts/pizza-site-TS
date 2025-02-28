@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PizzaBlockProps } from "../../components/PizzaBlock";
-import { getCartFromLS, getPricetFromLS } from "../../utils/getCartFromLS";
+import { getCartFromLS, getPriceFromLS } from "../../utils/getDataFromLS";
 
 interface IFInitialState {
   totalPrice: number;
@@ -10,7 +10,7 @@ interface IFInitialState {
 
 const initialState: IFInitialState = {
   items: getCartFromLS(),
-  totalPrice: getPricetFromLS(),
+  totalPrice: getPriceFromLS(),
   totalCount: 0,
 };
 
@@ -54,10 +54,11 @@ const cartSlice = createSlice({
         findItem.count--;
         state.totalPrice -= findItem.price;
         state.totalCount -= 1;
-      } else {
+      } else if (findItem) {
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
+        state.totalPrice -= findItem.price;
       }
     },
   },

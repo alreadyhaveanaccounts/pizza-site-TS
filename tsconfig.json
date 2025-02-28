@@ -1,5 +1,5 @@
 {
-  "exclude": ["vite.config.js", "eslint.config.js"],
+  "exclude": ["vite.config.js", "eslint.config.js", "index-Q4kBOdHv.js"],
   "compilerOptions": {
     "typeRoots": ["./types", "./node_modules/@types"],
     "target": "ESNext",

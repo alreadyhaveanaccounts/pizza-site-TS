@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
       localStorage.setItem("price", json2);
     }
     isMounted.current = true;
-  }, [items]);
+  }, [items, totalPrice]);
   return (
     <div className="header">
       <div className="container">
